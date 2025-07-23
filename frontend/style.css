@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.input {
+  width: 90%;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: #303030;
+  background-color: #ffffff;
+  outline: none;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 90%;
+  margin-bottom: 140px;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 70%; */
+  margin: 8px;
+}
+
+.own {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+  border-radius: 16px 16px 0 16px;
+  padding: 10px 14px;
+  color: #303030;
+  text-align: right;
+}
+
+.other {
+  align-self: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 16px 16px 16px 0;
+  padding: 10px 14px;
+  color: #303030;
+  text-align: left;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.time {
+  align-self: flex-end;
+  font-size: 0.7rem;
+  color: #aaa;
+  margin-top: 6px;
+}

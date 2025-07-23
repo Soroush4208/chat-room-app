@@ -1,24 +1,38 @@
 const http = require('http');
-const websocket = require('ws');
+const webSocket = require('ws');
 
 const server = http.createServer();
 
-const wss = new websocket.Server({ server });
+const ws = new webSocket.Server({ server });
 
-wss.on('headers', (headers, req) => {
-  console.log('headers => ', headers);
+ws.on('headers', headers => {
+  // console.log("Headers ->", headers);
 });
 
-wss.on('connection', socket => {
-  socket.on('message', message => {
-    wss.clients.forEach(client => {
-      if (client.readyState === websocket.OPEN) {
-        client.send(message.toString());
-      }
+ws.on('connection', (socket, req) => {
+  const userID = req.url.slice(1);
+  socket.id = userID;
+  const now = new Date();
+  const createdAt = now.toLocaleTimeString('fa-IR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+  socket.send(JSON.stringify({ userID }));
+
+  socket.on('message', data => {
+    ws.clients.forEach(client => {
+      client.send(
+        JSON.stringify({
+          userID: socket.id,
+          message: data.toString(),
+          createdAt,
+        })
+      );
     });
   });
 });
 
 server.listen(4208, () => {
-  console.log('Server is running on port 4208');
+  console.log('Server running on port 4208');
 });
